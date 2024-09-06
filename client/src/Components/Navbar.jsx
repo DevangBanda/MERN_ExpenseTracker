@@ -1,17 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import logo from "../utils/logo.png";
 
 
 const Container = styled.div`
 display: flex; 
+justify-content: space-between; 
+align-items: center; 
+width: 100vw;
+position: sticky;
+top: 0;
+z-index:10;
+color:white;
+border-bottom: 1px solid black;
+box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
 
-const MobileNavItems = styled.div``; 
-const NavItems = styled.div``; 
-const NavLink = styled.div``;
-const MobileMenu = styled.div``; 
+const MobileNavItems = styled.div`
+display: none;
+`; 
+
+
+const NavItems = styled.div`
+display: flex; 
+justify-content: space-between; 
+align-items: center;
+width: 40%;
+
+@media(max-width: 400px)
+{display: none;
+}
+`; 
+
+const NavLink = styled.btn`
+
+`;
+
+const MobileMenu = styled.div`
+display: none`; 
+
 const NavLogo = styled.div``; 
 
 const Logo = styled.img`
@@ -19,11 +47,7 @@ const Logo = styled.img`
 `;
 
 const MenuIcon = styled.div``;
-
-
-
-
-
+const MenuImg = styled.div``;
 
 
 const Navbar = () => {
