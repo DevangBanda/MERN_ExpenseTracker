@@ -9,7 +9,6 @@ const Container = styled.div`
   gap: 3px;
   color: white;
   width: 80%;
-
 `;
 
 const Label = styled.label`
@@ -44,7 +43,7 @@ const OutlinedInput = styled.div`
   align-items: center;
   gap: 12px;
   &:focus-within {
-    border-color: ${({ theme }) => theme.red};
+    border-color: ${({ theme }) => theme.border};
   }
   ${({ error, theme }) =>
     error &&

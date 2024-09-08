@@ -17,7 +17,8 @@ const LineChartData = () => {
     padding: 10px; 
     border: 1px solid black; 
     border-radius: 10px; 
-    box-shadow: 1px 6px 20px 0px ${({theme}) => theme.shadow};; 
+    background:  ${({theme}) => theme.bgLight};  
+    box-shadow: 1px 6px 10px 1px black;
     @media(max-width: 600px)
     {
     padding: 5px;}`;
@@ -31,7 +32,6 @@ const LineChartData = () => {
                 {dataKey: "Expense", label: "Expense"},
             ]}
             height={300}
-            borderRadius={5}
         />
     </LineContainer>
   )

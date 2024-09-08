@@ -11,7 +11,8 @@ import Navbar from './Components/Navbar';
 
 const Container = styled.div`
 height: 100%; 
-widht: 100vw;
+widht: 95vw;
+margin: auto;
 display: flex;
 flex-direction: column;
 background: ${({theme}) => theme.bg};
