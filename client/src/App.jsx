@@ -4,13 +4,20 @@ import viteLogo from '/vite.svg'
 import Dashboard from './Pages/Dashboard';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { darkTheme } from './utils/theme';
 import styled from 'styled-components';
 import Navbar from './Components/Navbar';
 
 
 const Container = styled.div`
 height: 100%; 
-widht: 100vw;`;
+widht: 100vw;
+display: flex;
+flex-direction: column;
+background: ${({theme}) => theme.bg};
+color: ${({theme}) => theme.text_primary};
+transition: all 0.2s ease;
+`;
 
 
 function App() {
@@ -28,16 +35,18 @@ function App() {
   //   </Container>
 
   // </BrowserRouter>
-  <BrowserRouter>
-    <Container>
-      <Navbar/>
-        <Routes> 
-          <Route path = "/" exact element={<Dashboard/>}/>
-          <Route path = "/budget" exact element={<Dashboard/>}/>
-          <Route path = "/" exact element={<Dashboard/>}/>
-        </Routes>
-    </Container>
-  </BrowserRouter>
+  <ThemeProvider theme={darkTheme}>
+    <BrowserRouter>
+      <Container>
+        <Navbar/>
+          <Routes> 
+            <Route path = "/" exact element={<Dashboard/>}/>
+            <Route path = "/budget" exact element={<Dashboard/>}/>
+            <Route path = "/" exact element={<Dashboard/>}/>
+          </Routes>
+      </Container>
+    </BrowserRouter>
+  </ThemeProvider>
   )
 }
 

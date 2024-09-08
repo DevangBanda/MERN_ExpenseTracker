@@ -7,6 +7,7 @@ const Container = styled.div`
 display: flex; 
 justify-content: space-between; 
 align-items: center; 
+height: 100px;
 width: 100vw;
 position: sticky;
 z-index: 10;
@@ -25,7 +26,7 @@ const NavItems = styled.div`
 display: flex; 
 justify-content: space-between; 
 width: 40%;
-
+:
 
 @media(max-width: 400px)
 {display: none;
@@ -45,7 +46,8 @@ const NavLink = styled.div`
 
 
 const Logo = styled.img`
-    width: 100px;
+    height: 90px;
+    padding-left: 30px;
 `;
 
 const MenuIcon = styled.div`

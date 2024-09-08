@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {Piechart} from "@mui/x-charts";
+import {PieChart} from "@mui/x-charts";
 
-import React from 'react'
 
 const DataCard = styled.div`
 flex: 1;
@@ -10,7 +9,7 @@ min-width: 300px;
 padding: 10px; 
 border: 1px solid black; 
 border-radius: 10px; 
-box-shadow: 1px 6px 20px 0px; 
+box-shadow: 1px 6px 20px 0px ${({theme}) => theme.shadow};
 @media(max-width: 600px)
 {
 padding: 5px;}
@@ -19,21 +18,20 @@ padding: 5px;}
 const PieChartData = () => {
     
     const chartData = [
-        { id: 0, value: 10, label: 'series A' },
-        { id: 1, value: 15, label: 'series B' },
-        { id: 2, value: 20, label: 'series C' },
+        { id: 0, value: 30, label: 'Income' },
+        { id: 1, value: 20, label: 'Expense' },
+        { id: 2, value: 10, label: 'Saving' },
     ]
 
   return (
 
     <DataCard>
-        <Piechart
+        <PieChart
             series={[
                 {
-                    data:{data}, 
+                    data:[...chartData], 
                     highlightScope: {fade: 'global', highlight: 'item'}, 
-                    faded: {innerRadius: 30, additionalRadius: -15, color: 'grey'}, 
-                    valueFormatter,
+                    faded: {innerRadius: 30, additionalRadius: -15, color: 'grey'},        
                 },
             ]}
             height={300} 
