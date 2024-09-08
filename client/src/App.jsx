@@ -8,7 +8,9 @@ import styled from 'styled-components';
 import Navbar from './Components/Navbar';
 
 
-const Container = styled.div``;
+const Container = styled.div`
+height: 100%; 
+widht: 100vw;`;
 
 
 function App() {
@@ -26,7 +28,16 @@ function App() {
   //   </Container>
 
   // </BrowserRouter>
-  <Navbar/>
+  <BrowserRouter>
+    <Container>
+      <Navbar/>
+        <Routes> 
+          <Route path = "/" exact element={<Dashboard/>}/>
+          <Route path = "/budget" exact element={<Dashboard/>}/>
+          <Route path = "/" exact element={<Dashboard/>}/>
+        </Routes>
+    </Container>
+  </BrowserRouter>
   )
 }
 

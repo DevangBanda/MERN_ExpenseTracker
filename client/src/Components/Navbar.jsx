@@ -9,9 +9,8 @@ justify-content: space-between;
 align-items: center; 
 width: 100vw;
 position: sticky;
-top: 0;
-z-index:10;
-color:white;
+z-index: 10;
+color: white;
 border-bottom: 1px solid black;
 box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 `;
@@ -25,29 +24,44 @@ display: none;
 const NavItems = styled.div`
 display: flex; 
 justify-content: space-between; 
-align-items: center;
 width: 40%;
+
 
 @media(max-width: 400px)
 {display: none;
 }
 `; 
 
-const NavLink = styled.btn`
+const MobileMenu = styled.div`
+display: none
+`; 
 
+const NavLogo = styled.div`
 `;
 
-const MobileMenu = styled.div`
-display: none`; 
+const NavLink = styled.div`
+`;
 
-const NavLogo = styled.div``; 
+
 
 const Logo = styled.img`
     width: 100px;
 `;
 
-const MenuIcon = styled.div``;
-const MenuImg = styled.div``;
+const MenuIcon = styled.div`
+`;
+
+const MenuImg = styled.div`
+`;
+
+const UserContainer = styled.div`
+`;  
+
+const UserImg = styled.img`
+`;
+
+const UserLogout = styled.div`
+`;
 
 
 const Navbar = () => {
@@ -79,6 +93,16 @@ const Navbar = () => {
             <NavLink to="/">GHI</NavLink>
             <NavLink to="/">JKL</NavLink>
         </NavItems>
+
+        <UserContainer>
+            <UserImg>
+
+            </UserImg>
+
+            <UserLogout>
+               
+            </UserLogout>
+        </UserContainer>
     </Container>
   )
 }
