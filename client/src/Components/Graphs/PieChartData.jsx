@@ -16,8 +16,7 @@ box-shadow: 1px 6px 10px 1px black;
 padding: 5px;}
 `;
 
-const PieChartData = () => {
-    
+const PieChartData = React.memo(() => {
     const chartData = [
         { id: 0, value: 30, label: 'Income' },
         { id: 1, value: 20, label: 'Expense' },
@@ -39,6 +38,6 @@ const PieChartData = () => {
         />
     </DataCard>
   )
-}
+});
 
 export default PieChartData

@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, {useCallback, useState, useMemo} from 'react'; 
 import styled, { ThemeProvider } from 'styled-components'
 import BarGraphData from '../Components/Graphs/BarGraphData';
 import PieChartData from '../Components/Graphs/PieChartData';
@@ -32,7 +32,22 @@ const ExpenseHistory = styled.div`
 `;
 
 const Dashboard = () => {
-  
+
+  const [expense, setExpense] = useState([]);
+
+  const handleAddExpense = useCallback((newExpense) =>
+  {
+    console.log(newExpense);
+    setExpense((prevExpenses) => {
+      const updatedExpenses = [newExpense];
+      console.log("Updated expenses:", updatedExpenses);
+      return updatedExpenses;
+    });
+  }, []);  //Dependency array is empty, so the function is only created once
+
+ // Memoize the expenses array
+ const memoizedExpenses = useMemo(() => expense, [expense]);
+   
   return (
     <Container>
       <ExpenseDisplayContainer>
@@ -45,13 +60,13 @@ const Dashboard = () => {
         </GraphDisplay>
         <GraphDisplay>
           <LineChartData/>
-          <AddExpense/>
+          <AddExpense onAddExpense={handleAddExpense}/>
 
         </GraphDisplay>
       </ExpenseDisplayContainer>
 
       <ExpenseHistory>
-        <ExpenseTable/>
+        <ExpenseTable addedExpense={memoizedExpenses}/>
 
       </ExpenseHistory>
 

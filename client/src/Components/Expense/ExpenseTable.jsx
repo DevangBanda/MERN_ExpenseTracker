@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import styled from 'styled-components';
 
 
 
-const ExpenseTable = () => {
+const ExpenseTable = ({addedExpense}) => {
 
-    const expenses = [
-        { date: "2024-09-08", details: "Groceries", amount: 50 },
-        { date: "2024-09-07", details: "Electricity Bill", amount: 100 },
-        { date: "2024-09-05", details: "Dinner", amount: 30 }
-      ];
+
+  const [newExpense] = addedExpense; //Deconstruct the object
+   
+  
+  const hasMounted = useRef(false);
+
+  const [Expense, setExpense] = useState([
+    {description: 'Groceries', amount: 50 },
+    {description: 'Electricity Bill', amount: 100 },
+    {description: 'Dinner', amount: 30 }
+  ]);
+
+  //Update the Expense whenever addedExpense is changed
+  useEffect(() => {
+    if(newExpense && hasMounted.current ){
+      newExpense.amount = parseFloat(newExpense.amount);
+      setExpense((prevExpense) => [...prevExpense, newExpense]);
+    }
+    else{
+      hasMounted.current = true;
+    }
+  }, [addedExpense]);
 
       const tableStyle = {
         width: '100%',
@@ -27,7 +44,7 @@ const ExpenseTable = () => {
     <table style = {tableStyle}>
         <thead>
             <tr>
-                <th style={cellStyle}>Date</th>
+                {/* <th style={cellStyle}>Date</th> */}
                 <th style={cellStyle}>Details</th>
                 <th style={cellStyle}>Amount</th>
                 <th style={cellStyle}>Edit</th>
@@ -35,11 +52,11 @@ const ExpenseTable = () => {
         </thead>
             
         <tbody>
-            {expenses.map((expense, index) => (
+            {Expense.map((Expense, index) => (
                 <tr key={index}>
-                    <td style={cellStyle}>{expense.date}</td>
-                    <td style={cellStyle}>{expense.details}</td>
-                    <td style={cellStyle}>{expense.amount}</td>
+                    {/* <td style={cellStyle}>{Expense.date}</td> */}
+                    <td style={cellStyle}>{Expense.description}</td>
+                    <td style={cellStyle}>{Expense.amount}</td>
                 </tr>
             ))}
         </tbody>

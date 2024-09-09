@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.div`
+const Button = styled.button`
     border-radius: 10px;
     color: white;
     font-size: 18px;
@@ -19,7 +19,7 @@ const Button = styled.div`
     }`;
 
 
-const Button_Dash = ({text, onClick}) => {
+const Button_Dash = ({text, type, onClick}) => {
   return (
     <Button onClick={onClick}>    
         {text}

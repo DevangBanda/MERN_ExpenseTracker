@@ -1,7 +1,7 @@
-import React from 'react'; 
+import React, {useState, useMemo} from 'react'; 
 import styled from 'styled-components';
 import TextInput from './TextInput';
-
+import Input_Dash from './Input_Dash';
 import Button_Dash from './Button_Dash';
 
 const Expense = styled.div`
@@ -25,35 +25,57 @@ const SubtopicHeading = styled.div`
 background: grey;
 `;
 
-const AddExpense = () => {
+const AddExpense = React.memo(({onAddExpense}) => {
+
+    const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState('');
+    const [expense, setExpense] = useState({description: '', amount: ''})
+
+      // Function to handle description change
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
+  };
+
+    // Function to handle amount change
+    const handleAmountChange = (value) => {
+        setAmount(value);
+      };
 
     const handleAddExpenseClick = () => {
-        console.log("buttonClicked");
+        setExpense({description, amount });
+
+        onAddExpense({description, amount});
     }
+
+
   return (
     <Expense>
     <SubtopicHeading>Add Expense</SubtopicHeading>
-      <TextInput 
-        label = "Description"
-        placeholder = "Enter description of Expense"
-        onChange={(e) => (e.target.value)}
+      <Input_Dash  
+        name = "description"
+        value={description}
+        onChange={handleDescriptionChange}
+        type="text"
+        placeholder="Enter description"
+        label = "Details of Expense"
         />
     
-      <TextInput 
-        label = "Amount"
-        placeholder = "Enter amount in $"
-        onChange={(e) => (e.target.value)}/>
-
-      <TextInput 
-      label = "Replace with Drop down"
-      placeholder = "Income, expense or saving"/>
+      <Input_Dash 
+        name = "amount"
+        value={amount}
+        onChange={handleAmountChange}
+        type="text"
+        placeholder="Enter amount"
+        validateFloat={true} // Enable float validation
+        label = "Enter Amount"
+        />
 
       {/* Add Date picker  */}
-      <Button_Dash  text="Add Expense" onClick={handleAddExpenseClick}/>   
+      <Button_Dash type="submit" text="Add Expense" onClick={handleAddExpenseClick}/>   
 
     </Expense>
 
   )
-}
+})
 
 export default AddExpense

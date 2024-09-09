@@ -3,7 +3,7 @@ import { LineChart } from '@mui/x-charts';
 import styled from 'styled-components';
 
 
-const LineChartData = () => {
+const LineChartData = React.memo(() => {
 
     const chartData = [{"Income": 10, "Expense": 8, 'month': 'Jan'},
                     {"Income": 10, "Expense": 8, 'month': 'Feb'}, 
@@ -24,6 +24,7 @@ const LineChartData = () => {
     padding: 5px;}`;
 
   return (
+  
     <LineContainer>
         <LineChart
             dataset={chartData}
@@ -35,6 +36,6 @@ const LineChartData = () => {
         />
     </LineContainer>
   )
-}
+});
 
 export default LineChartData

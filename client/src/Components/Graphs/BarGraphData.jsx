@@ -14,7 +14,9 @@ box-shadow: 1px 6px 10px 1px black;
 {
 padding: 5px;}`;
 
-const BarGraphData = () => {
+const BarGraphData = React.memo(() => {
+
+
 
     //Using dataset in Bargraph, therefore, data needs to be an array of objects
     //Might need to define and use a valueFormatter with the real data
@@ -37,6 +39,6 @@ const BarGraphData = () => {
         />
     </BarGraph>
   )
-}
+});
 
 export default BarGraphData
