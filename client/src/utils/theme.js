@@ -10,5 +10,6 @@ export const darkTheme = {
     red: "#FF0000",
     shadow: "#rgba(0,0,0,70%)", 
     button: "#F2613F",
-    border: "#0476D0"
+    border: "#0476D0", 
+    expenseDisplay: "#1e1e1e",
 }

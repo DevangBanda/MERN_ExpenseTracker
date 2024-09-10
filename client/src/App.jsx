@@ -7,10 +7,10 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme } from './utils/theme';
 import styled from 'styled-components';
 import Navbar from './Components/Navbar';
-
+import Budgeting from './Pages/Budgeting';
 
 const Container = styled.div`
-height: 100%; 
+height: 100vh; 
 widht: 95vw;
 margin: auto;
 display: flex;
@@ -41,9 +41,9 @@ function App() {
       <Container>
         <Navbar/>
           <Routes> 
-            <Route path = "/" exact element={<Dashboard/>}/>
+            <Route path = "/" exact element={<Budgeting/>}/>
             <Route path = "/budget" exact element={<Dashboard/>}/>
-            <Route path = "/" exact element={<Dashboard/>}/>
+            <Route path = "/account" exact element={<Budgeting/>}/>
           </Routes>
       </Container>
     </BrowserRouter>

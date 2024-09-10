@@ -37,22 +37,19 @@ const Dashboard = () => {
 
   const handleAddExpense = useCallback((newExpense) =>
   {
-    console.log(newExpense);
     setExpense((prevExpenses) => {
       const updatedExpenses = [newExpense];
-      console.log("Updated expenses:", updatedExpenses);
       return updatedExpenses;
     });
   }, []);  //Dependency array is empty, so the function is only created once
 
  // Memoize the expenses array
  const memoizedExpenses = useMemo(() => expense, [expense]);
-   
+  
   return (
     <Container>
       <ExpenseDisplayContainer>
         <SelectTimeline>
-
         </SelectTimeline>
         <GraphDisplay>
           <PieChartData/>
@@ -61,7 +58,6 @@ const Dashboard = () => {
         <GraphDisplay>
           <LineChartData/>
           <AddExpense onAddExpense={handleAddExpense}/>
-
         </GraphDisplay>
       </ExpenseDisplayContainer>
 
