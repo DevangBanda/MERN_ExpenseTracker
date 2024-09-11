@@ -15,20 +15,31 @@ background: ${({theme}) => theme.expenseDisplay};
 `;
 
 const Date = styled.div`
+display: flex;
+justify-content: center;
 flex: 0.6;
 border-right: 3px solid ${({theme}) => theme.bgLight};
-height: 100%;
-margin: none;
  `;
 
 const Desc = styled.div`
-flex: 1;`;
+display: flex;
+justify-content: center;
+flex: 1;
+border-right: 3px solid ${({theme}) => theme.bgLight};
+`;
 
 const Amount = styled.div`
-flex: 1;`;
+display: flex;
+justify-content: center;
+flex: 1;
+border-right: 3px solid ${({theme}) => theme.bgLight};
+`;
 
 const Type = styled.div`
-flex: 0.6;`;
+flex: 0.6;
+display: flex;
+justify-content: center;
+`;
 
 
 const ExpenseDisplay = ({}) => {

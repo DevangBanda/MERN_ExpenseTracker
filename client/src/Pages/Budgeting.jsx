@@ -9,19 +9,24 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 height: 100vh;
-overflow: auto;`;
+  overflow: hidden; 
+`;
 
 const Division = styled.div`
 display: flex;
 flex-direction: row;
 justify-content :space-around; 
 align-items: center;
+flex: 0 0 auto; 
 `;
 
 const Info = styled.h3`
-width: fit-content;`;
+width: fit-content;
+flex: 0 0 auto;`;
 
 const UploadedDiv = styled.div`
+flex: 1; 
+overflow-y: auto;
 display: flex; 
 flex-direction: column; 
 align-items: center;
@@ -32,23 +37,20 @@ border: 1px solid ${({ theme }) => theme.primary};
 border-radius: 10px;`;
 
 const ExpensesContainer = styled.div`
+flex: 1;
 display: flex;
 flex-direction: column;
 gap:10px;
-height: 50vh;
+overflow-y: auto;
+min-height: 50vh;
 width: 98vw;
 background: ${({ theme }) => theme.bgLight};
-box-shadow: 10px 20px 35px 10px ${({ theme }) => theme.bgLight};
 border: 1px solid ${({ theme }) => theme.primary};
 border-radius: 20px;
-margin-top: auto;
-overflow: auto;
 @media(max-width: 400px)
 {
     min-height: 30vh;
 }
-
-
 `;
 
 const Budgeting = () => {
@@ -63,8 +65,15 @@ const Budgeting = () => {
             <ExpensesContainer>
                 <ExpenseDisplay/>
                 <ExpenseDisplay/>   
+                <ExpenseDisplay/>  
+                <ExpenseDisplay/>
                 <ExpenseDisplay/>   
-            </ExpensesContainer>   
+                <ExpenseDisplay/>  
+                <ExpenseDisplay/>
+                <ExpenseDisplay/>   
+                <ExpenseDisplay/>  
+
+            </ExpensesContainer>  
         </UploadedDiv>
         
     </Container>
