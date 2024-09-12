@@ -27,7 +27,7 @@ const Container = styled.button`
 
 const Button_Dash = ({text, type, onClick, component}) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       {component}
       <Button onClick={onClick}>    
           {text}

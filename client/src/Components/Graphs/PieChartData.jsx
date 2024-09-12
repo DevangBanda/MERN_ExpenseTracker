@@ -24,19 +24,16 @@ const PieChartData = React.memo(() => {
     ]
 
   return (
-
-    <DataCard>
-        <PieChart
-            series={[
-                {
-                    data:[...chartData], 
-                    highlightScope: {fade: 'global', highlight: 'item'}, 
-                    faded: {innerRadius: 30, additionalRadius: -15, color: 'grey'},        
-                },
-            ]}
-            height={300} 
-        />
-    </DataCard>
+    <PieChart
+        series={[
+            {
+                data:[...chartData], 
+                highlightScope: {fade: 'global', highlight: 'item'}, 
+                faded: {innerRadius: 30, additionalRadius: -15, color: 'grey'},        
+            },
+        ]}
+        height={300} 
+    />
   )
 });
 

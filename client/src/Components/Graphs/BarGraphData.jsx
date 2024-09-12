@@ -14,7 +14,7 @@ box-shadow: 1px 6px 10px 1px black;
 {
 padding: 5px;}`;
 
-const BarGraphData = React.memo(() => {
+const BarGraphData = React.memo(({}) => {
 
 
 
@@ -27,17 +27,17 @@ const BarGraphData = React.memo(() => {
     ]
 
   return (
-    <BarGraph>
-        <BarChart
-        dataset={chartData}
-        xAxis = {[{scaleType: 'band', dataKey:'month'}]}
-        series={[{dataKey: "Income", label: "Income"},
-            {dataKey: "Expense", label: "Expense"},
-        ]}
-        height={300}
-        borderRadius={5}
-        />
-    </BarGraph>
+
+      <BarChart
+      dataset={chartData}
+      xAxis = {[{scaleType: 'band', dataKey:'month'}]}
+      series={[{dataKey: "Income", label: "Income"},
+          {dataKey: "Expense", label: "Expense"},
+      ]}
+      height={300}
+      borderRadius={5}
+      />
+
   )
 });
 

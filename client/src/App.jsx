@@ -41,8 +41,8 @@ function App() {
       <Container>
         <Navbar/>
           <Routes> 
-            <Route path = "/" exact element={<Budgeting/>}/>
-            <Route path = "/budget" exact element={<Dashboard/>}/>
+            <Route path = "/budget" exact element={<Budgeting/>}/>
+            <Route path = "/" exact element={<Dashboard/>}/>
             <Route path = "/account" exact element={<Budgeting/>}/>
           </Routes>
       </Container>
