@@ -36,14 +36,21 @@ box-shadow: 1px 20px 35px 0px ${({ theme }) => theme.primary + 40};
 border: 1px solid ${({ theme }) => theme.primary};
 border-radius: 10px;`;
 
-const ExpensesContainer = styled.div`
+const ExpenseAndCategory = styled.div`
+display: flex;
 flex: 1;
+width: 98vw;
+padding: none;
+overflow-y: auto;
+justify-content: center;`;
+
+const ExpensesContainer = styled.div`
+flex: ${(props) => (props.primary ? '0.75' : '0.25')}; 
 display: flex;
 flex-direction: column;
 gap:10px;
 overflow-y: auto;
 min-height: 50vh;
-width: 98vw;
 background: ${({ theme }) => theme.bgLight};
 border: 1px solid ${({ theme }) => theme.primary};
 border-radius: 20px;
@@ -52,6 +59,7 @@ border-radius: 20px;
     min-height: 30vh;
 }
 `;
+
 
 const Budgeting = () => {
   return (
@@ -62,18 +70,29 @@ const Budgeting = () => {
         </Division>
         <UploadedDiv>
             <Info>Recent added Expenses</Info>
-            <ExpensesContainer>
-                <ExpenseDisplay/>
-                <ExpenseDisplay/>   
-                <ExpenseDisplay/>  
-                <ExpenseDisplay/>
-                <ExpenseDisplay/>   
-                <ExpenseDisplay/>  
-                <ExpenseDisplay/>
-                <ExpenseDisplay/>   
-                <ExpenseDisplay/>  
+            <ExpenseAndCategory>
+              <ExpensesContainer primary>
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>  
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>  
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>
+                  <ExpenseDisplay/>   
+                  <ExpenseDisplay/>
+              </ExpensesContainer> 
 
-            </ExpensesContainer>  
+              <ExpensesContainer>
+                <Info>Categories</Info>
+              </ExpensesContainer> 
+            </ExpenseAndCategory>
         </UploadedDiv>
         
     </Container>
