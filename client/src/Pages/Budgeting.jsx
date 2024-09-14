@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, {useRef, useState, useEffect} from 'react'; 
 import styled from 'styled-components';
 import Navbar from '../Components/Navbar';
 import Button_Dash from '../Components/Button_Dash';
@@ -60,8 +60,32 @@ border-radius: 20px;
 }
 `;
 
+const Top = styled.div`
+display: flex;
+align-items: center;`;
+
+const Head = styled.h2`
+flex: 1;
+display: flex;
+justify-content: center;
+padding-left: 10px;
+`;
+
+
 
 const Budgeting = () => {
+
+  const [pWidth, setPWidth] = useState(0);
+  const pRef = useRef(null);
+
+  useEffect(() => {
+    if (pRef.current) {
+      setPWidth(pRef.current.offsetWidth);
+    }
+  }, [pRef]); 
+  const element = document.getElementById('myElement');
+
+
   return (
     <Container>
         <Division> 
@@ -90,8 +114,12 @@ const Budgeting = () => {
               </ExpensesContainer> 
 
               <ExpensesContainer>
-                <Info>Categories</Info>
-              </ExpensesContainer> 
+                <Top>
+                  <Head>Categories</Head>
+                  <Button_Dash id = "myEle" ref={pRef} component={<AddIcon/>}></Button_Dash>
+                </Top>
+              </ExpensesContainer>
+
             </ExpenseAndCategory>
         </UploadedDiv>
         

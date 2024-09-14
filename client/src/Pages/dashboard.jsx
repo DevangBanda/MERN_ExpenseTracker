@@ -112,8 +112,7 @@ const Dashboard = React.memo(() => {
 
           <AccountDisplayContainer>
             <AccountsDisplay>
-              <AmountDisplay type="Income" amount="$20000"/>
-              <AmountDisplay type="Expense" amount="$20000"/>
+              <AmountDisplay type="Put Timeline here"/>
             </AccountsDisplay>
 
             <AccountsDisplay>
