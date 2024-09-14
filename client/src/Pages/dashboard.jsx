@@ -7,6 +7,7 @@ import LineChartData from '../Components/Graphs/LineChartData';
 import ExpenseTable from '../Components/Expense/ExpenseTable';
 import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
+import AmountDisplay from '../Components/Expense/AmountDisplay';
 
 
 const Container = styled.div`
@@ -36,7 +37,7 @@ const ExpenseHistory = styled.div`
 `;
 
 const ChartSelector = styled.div`
-flex: 0.5;
+flex: 0.6;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -51,10 +52,25 @@ box-shadow: 1px 6px 10px 1px black;
 padding: 5px;}
 `;
 
+const AccountDisplayContainer = styled.div`
+flex: 0.4;
+display: flex;
+flex-direction: column;
+`;
+
+const AccountsDisplay = styled.div`
+display: flex;
+
+`;
+
+
+
+
 const ButtonDiv = styled.div`
 display: flex; 
 gap: 10px;
 height`;
+
 
 
 const Dashboard = React.memo(() => {
@@ -93,7 +109,20 @@ const Dashboard = React.memo(() => {
             </ButtonDiv>
               {chartType == 'bar' ? (<BarGraphData/>) : chartType == 'line' ? (<LineChartData/>) : (<PieChartData/>)}
           </ChartSelector>
+
+          <AccountDisplayContainer>
+            <AccountsDisplay>
+              <AmountDisplay type="Income" amount="$20000"/>
+              <AmountDisplay type="Expense" amount="$20000"/>
+            </AccountsDisplay>
+
+            <AccountsDisplay>
+              <AmountDisplay type="Income" amount="$20000"/>
+              <AmountDisplay type="Income" amount="$20000"/>
+          </AccountsDisplay>
+          </AccountDisplayContainer>
         </GraphDisplay>
+        
         <GraphDisplay>
           <AddExpense onAddExpense={handleAddExpense}/>
         </GraphDisplay>
