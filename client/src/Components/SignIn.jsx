@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useDispatch, } from 'react';
 import styled from 'styled-components';
-import TextInput from './TextInput';
 import Button from './Button';
-import { UserSignIn } from "../api";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../redux/reducers/userSlice";
+import TextInput from './TextInput';
+
 
 const Container = styled.div`
 display: flex; 
@@ -31,44 +29,44 @@ cursor:pointer
 
 const SignIn = () => {
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const validateInputs = () => {
-    if (!email || !password) {
-      alert("Please fill in all fields");
-      return false;
-    }
-    return true;
+    // if (!email || !password) {
+    //   alert("Please fill in all fields");
+    //   return false;
+    // }
+    // return true;
   };
 
   const handelSignIn = async () => {
-    setLoading(true);
-    setButtonDisabled(true);
-    if (validateInputs()) {
-      await UserSignIn({ email, password })
-        .then((res) => { 
-          alert("signedin");
-          dispatch(loginSuccess(res.data));
-          setLoading(false);
-          setButtonDisabled(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert(err.response.data.message);
-          setLoading(false);
-          setButtonDisabled(false);
-        });
-    }
+    // setLoading(true);
+    // setButtonDisabled(true);
+    // if (validateInputs()) {
+    //   await UserSignIn({ email, password })
+    //     .then((res) => { 
+    //       alert("signedin");
+    //       dispatch(loginSuccess(res.data));
+    //       setLoading(false);
+    //       setButtonDisabled(false);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       alert(err.response.data.message);
+    //       setLoading(false);
+    //       setButtonDisabled(false);
+    //     });
+    // }
   };
 
   return (
     <Container>
         <div>
-            <TextPrimary>Welcome to the Bird Fitness</TextPrimary>
+            <TextPrimary>Welcome to the Budgeting</TextPrimary>
             <TextSecondary>Please Login with your details</TextSecondary>
         </div>
 

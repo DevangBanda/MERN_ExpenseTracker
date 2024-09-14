@@ -8,6 +8,7 @@ import { darkTheme } from './utils/theme';
 import styled from 'styled-components';
 import Navbar from './Components/Navbar';
 import Budgeting from './Pages/Budgeting';
+import Authentication from './Pages/Authentication';
 
 const Container = styled.div`
 height: 100vh; 
@@ -22,6 +23,9 @@ transition: all 0.2s ease;
 
 
 function App() {
+
+  const [currentUser, setCurrentUser] = useState(true);
+
 
   return (
   // <BrowserRouter>
@@ -38,6 +42,9 @@ function App() {
   // </BrowserRouter>
   <ThemeProvider theme={darkTheme}>
     <BrowserRouter>
+
+      {currentUser ? 
+      (
       <Container>
         <Navbar/>
           <Routes> 
@@ -46,6 +53,16 @@ function App() {
             <Route path = "/account" exact element={<Budgeting/>}/>
           </Routes>
       </Container>
+      )   
+      
+      
+      : 
+
+      (
+        <Container>
+          <Authentication/>
+        </Container>
+      )}
     </BrowserRouter>
   </ThemeProvider>
   )

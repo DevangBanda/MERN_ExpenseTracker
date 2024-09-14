@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar';
 import Button_Dash from '../Components/Button_Dash';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
 import AddIcon from '@mui/icons-material/Add';
+import { addExpenseCSV } from '../api';
 
 const Container = styled.div`
 display: flex;
@@ -75,22 +76,32 @@ padding-left: 10px;
 
 const Budgeting = () => {
 
-  const [pWidth, setPWidth] = useState(0);
-  const pRef = useRef(null);
 
-  useEffect(() => {
-    if (pRef.current) {
-      setPWidth(pRef.current.offsetWidth);
-    }
-  }, [pRef]); 
-  const element = document.getElementById('myElement');
+  
+  // const [pWidth, setPWidth] = useState(0);
+  // const pRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (pRef.current) {
+  //     setPWidth(pRef.current.offsetWidth);
+  //   }
+  // }, [pRef]); 
+  // const element = document.getElementById('myElement');
+
+  const addExpense = async () => {
+    console.log("Button pressed");
+    await addExpenseCSV("Add Data Request")
+      .then((res) => {
+          console.log(res)
+      })
+  };
 
 
   return (
     <Container>
         <Division> 
             <Info>Last File uploaded on: </Info>   
-            <Button_Dash text="Upload" component={<AddIcon/>}/> 
+            <Button_Dash text="Upload" component={<AddIcon/>} onClick={addExpense}/> 
         </Division>
         <UploadedDiv>
             <Info>Recent added Expenses</Info>
@@ -116,7 +127,7 @@ const Budgeting = () => {
               <ExpensesContainer>
                 <Top>
                   <Head>Categories</Head>
-                  <Button_Dash id = "myEle" ref={pRef} component={<AddIcon/>}></Button_Dash>
+                  <Button_Dash id = "myEle"component={<AddIcon/>}></Button_Dash>
                 </Top>
               </ExpensesContainer>
 
