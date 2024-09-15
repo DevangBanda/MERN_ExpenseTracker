@@ -36,31 +36,31 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   const validateInputs = () => {
-    // if (!email || !password) {
-    //   alert("Please fill in all fields");
-    //   return false;
-    // }
-    // return true;
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return false;
+    }
+    return true;
   };
 
   const handelSignIn = async () => {
-    // setLoading(true);
-    // setButtonDisabled(true);
-    // if (validateInputs()) {
-    //   await UserSignIn({ email, password })
-    //     .then((res) => { 
-    //       alert("signedin");
-    //       dispatch(loginSuccess(res.data));
-    //       setLoading(false);
-    //       setButtonDisabled(false);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //       alert(err.response.data.message);
-    //       setLoading(false);
-    //       setButtonDisabled(false);
-    //     });
-    // }
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      await UserSignIn({ email, password })
+        .then((res) => { 
+          alert("signedin");
+          dispatch(loginSuccess(res.data));
+          setLoading(false);
+          setButtonDisabled(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.response.data.message);
+          setLoading(false);
+          setButtonDisabled(false);
+        });
+    }
   };
 
   return (

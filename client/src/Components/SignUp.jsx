@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import TextInput from './TextInput';
 import Button from './Button';
-
+import { userSignUp } from '../api';
 
 const Container = styled.div`
 display: flex; 
@@ -28,6 +28,36 @@ cursor:pointer
 
 
 const SignUp = () => {
+  
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+
+    const validateInput = () => {
+    if(!name || !email || !password)
+    {
+      alert("Fill in all the blanks"); 
+      return false;
+    }
+    return true;
+  }
+
+  const handleSignUp = async() =>{
+    if(validateInput())
+    {
+      await userSignUp({name, email, password})
+      .then((res) =>{
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+  }
+
   return (
     <Container>
         <div>
@@ -42,7 +72,7 @@ const SignUp = () => {
             <TextInput label="Password" placeholder={"Enter your password"}></TextInput>
         </div>
         
-        <Button text="Sign Up"></Button>
+        <Button onClick={handleSignUp} text="Sign Up"></Button>
     </Container>
   )
 }

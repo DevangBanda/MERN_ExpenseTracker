@@ -25,21 +25,9 @@ transition: all 0.2s ease;
 function App() {
 
   const [currentUser, setCurrentUser] = useState(true);
-
-
+  
   return (
-  // <BrowserRouter>
-  //   <Container> 
-  //     <NavBar/>
-  //       <Routes> 
-  //         <Route path = "/" exact element={<Dashboard/>}/>
-  //         <Route path = "/budget" exact element={<Dashboard/>}/>
-  //         <Route path = "/" exact element={<Dashboard/>}/>
-  //       </Routes>
 
-  //   </Container>
-
-  // </BrowserRouter>
   <ThemeProvider theme={darkTheme}>
     <BrowserRouter>
 
@@ -54,10 +42,7 @@ function App() {
           </Routes>
       </Container>
       )   
-      
-      
       : 
-
       (
         <Container>
           <Authentication/>
