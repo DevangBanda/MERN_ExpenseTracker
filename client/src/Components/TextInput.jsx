@@ -135,7 +135,7 @@ const TextInput = ({
   name,
   value,
   error,
-  handelChange,
+  handleChange,
   textArea,
   rows,
   columns,
@@ -147,7 +147,7 @@ const TextInput = ({
   popup,
   password,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);  
   return (
     <Container small={small}>
       <Label small={small} popup={popup} error={error}>
@@ -189,7 +189,7 @@ const TextInput = ({
               columns={columns}
               placeholder={placeholder}
               value={value}
-              onChange={(e) => handelChange(e)}
+              onChange={(e) => handleChange(e)}
               type={password && !showPassword ? "password" : "text"}
             />
             {password && (

@@ -2,6 +2,7 @@ import { CircularProgress } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
+
 const Button = styled.div`
   border-radius: 10px;
   color: white;
@@ -79,6 +80,7 @@ const button = ({
   small,
   outlined,
   full,
+  component,
 }) => {
   return (
     <Button
@@ -91,11 +93,13 @@ const button = ({
       outlined={outlined}
       full={full}
     >
+      {component}
       {isLoading && (
         <CircularProgress
           style={{ width: "18px", height: "18px", color: "inherit" }}
         />
       )}
+      
       {leftIcon}
       {text}
       {isLoading && <> . . .</>}

@@ -20,18 +20,18 @@ const Container = styled.button`
     font-size: 18px;
     }
     @media (max-width: 600px) {
-    padding: 10px 12px;}
+      padding: 10px 12px;}
     `;
 
 
 
-const Button_Dash = ({text, type, onClick, component}) => {
+const Button_Dash = ({text, key, type, onClick, component}) => {
   return (
-    <Container onClick={onClick}>
+    <Container key={key} onClick={onClick}>
       {component}
-      <Button onClick={onClick}>    
+      <button onClick={onClick}>    
           {text}
-      </Button>
+      </button>
     </Container>
   )
 }

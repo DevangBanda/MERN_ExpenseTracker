@@ -15,14 +15,6 @@ app.use(express.json({limit: "50mb"})); //Register the middleware with limit of 
 app.use(express.urlencoded({extended: true})); //Register the middleware used to parse incoming requests with URL encoded payloads
 
 
-app.get("/",(req, res) =>
-{
-    res.status(200).json({message: "Hello"});
-})
-
-
-app.use("/", userRoutes);
-
 mongoose
         .connect(process.env.mongoDB_URL)
         .then((res) => {     
@@ -37,3 +29,4 @@ mongoose
             console.log(error);
         });
 
+app.use("/", userRoutes);

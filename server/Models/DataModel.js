@@ -8,8 +8,8 @@ const dataSchema = new mongoose.Schema({
     },
     description: {type: String, required: true,}, 
     amount: {type: Number, required: true,}, 
-    date: {type: Date, default: Date.now,}, 
-    category: {type: String,}, 
+    date: {type: Date, default: Date.now, required: true}, 
+    category: {type: String, default: "Expense", required: true}, 
 
 });
 
