@@ -84,6 +84,6 @@ export const userSignIn = async (req,res,next) => {
 export const addExpense = async(req, res, next) => 
 {
     console.log(req)
-    console.log("Add expense request received");
+    console.log("Add expense");
     return res.status(200);
 }
