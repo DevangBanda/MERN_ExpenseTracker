@@ -38,7 +38,7 @@ function App() {
           <Routes> 
             <Route path = "/budget" exact element={<Budgeting/>}/>
             <Route path = "/" exact element={<Dashboard/>}/>
-            <Route path = "/account" exact element={<Budgeting/>}/>
+            {/* <Route path = "/account" exact element={<Budgeting/>}/> */}
           </Routes>
       </Container>
       )   

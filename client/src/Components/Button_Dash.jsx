@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.div`
-    color: white;
-    `;
-
-const Container = styled.button`
+const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 3px;

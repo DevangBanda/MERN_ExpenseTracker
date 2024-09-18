@@ -60,7 +60,6 @@ flex-direction: column;
 
 const AccountsDisplay = styled.div`
 display: flex;
-
 `;
 
 

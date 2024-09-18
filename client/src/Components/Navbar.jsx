@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import logo from "../utils/logo.png";
-
+import {Link, NavLink} from "react-router-dom"
 
 const Container = styled.div`
 display: flex; 
@@ -40,7 +40,7 @@ display: none
 const NavLogo = styled.div`
 `;
 
-const NavLink = styled.div`
+const LinkNav = styled(NavLink)`
 `;
 
 
@@ -83,17 +83,17 @@ const Navbar = () => {
         </NavLogo>
 
         <MobileNavItems> 
-            <NavLink to="/">ABC</NavLink>
-            <NavLink to="/">DEF</NavLink>
-            <NavLink to="/">GHI</NavLink>
-            <NavLink to="/">JKL</NavLink>
+            <LinkNav to="/">DashBoard</LinkNav>
+            <LinkNav to="/budget">Budget</LinkNav>
+            <LinkNav to="/">GHI</LinkNav>
+            <LinkNav to="/">JKL</LinkNav>
         </MobileNavItems>
 
         <NavItems>
-            <NavLink to="/">ABC</NavLink>
-            <NavLink to="/">DEF</NavLink>
-            <NavLink to="/">GHI</NavLink>
-            <NavLink to="/">JKL</NavLink>
+            <LinkNav to="/">DashBoard</LinkNav>
+            <LinkNav to="/budget">Budget</LinkNav>
+            <LinkNav to="/">GHI</LinkNav>
+            <LinkNav to="/">JKL</LinkNav>
         </NavItems>
 
         <UserContainer>

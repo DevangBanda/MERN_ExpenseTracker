@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Navbar from '../Components/Navbar';
 import Button_Dash from '../Components/Button_Dash';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
-import CategoriesDisplay from '../Components/CategoriesDisplay';
 import AddIcon from '@mui/icons-material/Add';
 import { addExpenseCSV } from '../api';
 import TextInput from '../Components/TextInput';
 import { CloudQueueSharp } from '@mui/icons-material';
 import Papa from "papaparse";
+import Categories from '../Components/DisplayComponents/Categories';
 
 const Container = styled.div`
 display: flex;
@@ -68,31 +68,6 @@ border-radius: 20px;
 }
 `;
 
-const Top = styled.div`
-display: flex;
-align-items: center;
-padding: 0px 5px;
-gap: 10px;`;
-
-const Bottom = styled.div`
-display: flex;
-flex-direction: column;
-gap: 1px;
-width: 90%;
-`;
-
-const Head = styled.h2`
-flex: 1;
-display: flex;
-justify-content: center;
-padding-left: 10px;
-`;
-
-const inputCategory = {
-  fontSize: '1rem', 
-  borderRadius: '5px',
-  width: 'fit-content'
-}
 
 const Budgeting = React.memo(() => {
   console.log("hed");
@@ -132,9 +107,7 @@ const Budgeting = React.memo(() => {
 
   //Function to handle add category button click
   const handleCategoryAdd = () => {
-
     setCategoryList([...categoryList, {id: Date.now(), name:elementRef.current.value}]);
-    
   }
 
   //Function to handle category Input Change
@@ -159,20 +132,11 @@ const Budgeting = React.memo(() => {
             <Info>Recent added Expenses</Info>
             <ExpenseAndCategory>
               <ExpensesContainer primary>
-                  <ExpenseDisplay/>
+                  
               </ExpensesContainer> 
 
               <ExpensesContainer>
-                <Top>
-                  <Head>Categories</Head>
-                </Top>
-                <Top>
-                  <input ref={elementRef} type="text" placeholder={"Add new Category"}/>
-                  <Button_Dash onClick={handleCategoryAdd} component={<AddIcon/>}></Button_Dash>
-                </Top>
-                <Bottom>
-                  {categoryList.map((category) => (<CategoriesDisplay onClick={handleCategoryDelete} id={category.id} key={category.id} name={category.name}/>))}
-                </Bottom>
+                <Categories/>
               </ExpensesContainer>
 
             </ExpenseAndCategory>
