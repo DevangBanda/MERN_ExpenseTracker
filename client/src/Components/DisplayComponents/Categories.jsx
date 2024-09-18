@@ -27,6 +27,7 @@ padding-left: 10px;
 `;
 
 const Categories = ({props}) => {
+  console.log("hed");
 
     const [categoryList, setCategoryList] = useState([]);
 

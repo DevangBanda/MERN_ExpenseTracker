@@ -3,12 +3,10 @@ import styled, { ThemeProvider } from 'styled-components'
 import BarGraphData from '../Components/Graphs/BarGraphData';
 import PieChartData from '../Components/Graphs/PieChartData';
 import LineChartData from '../Components/Graphs/LineChartData';
-
-import ExpenseTable from '../Components/Expense/ExpenseTable';
 import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
 import AmountDisplay from '../Components/Expense/AmountDisplay';
-
+import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
 
 const Container = styled.div`
 flex: 1; 
@@ -62,20 +60,29 @@ const AccountsDisplay = styled.div`
 display: flex;
 `;
 
-
-
-
 const ButtonDiv = styled.div`
 display: flex; 
 gap: 10px;
 height`;
 
+const NewExpenseContainer=styled.div`
+flex: 1; 
+display: flex;
+flex-direction: column;
+min-height: 200px;
+gap:10px;
+overflow-y: auto;
+background: ${({ theme }) => theme.bgLight};
+border: 1px solid ${({ theme }) => theme.primary};
+border-radius: 20px;
+@media(max-width: 700px)
+{
+  flex: ${(props) => (props.primary ? '0.7' : '0.3')};
+}`;
 
 
-const Dashboard = React.memo(() => {
-
+const Dashboard = () => {
   const [expense, setExpense] = useState([]);
-
   const [chartType, setChartType] = useState();
 
   const handleSetChartType = (chart) => 
@@ -83,16 +90,13 @@ const Dashboard = React.memo(() => {
     setChartType(chart);
   }
 
-  const handleAddExpense = useCallback((newExpense) =>
+  const handleAddExpense = (exp) =>
   {
-    setExpense((prevExpenses) => {
-      const updatedExpenses = [newExpense];
-      return updatedExpenses;
-    });
-  }, []);  //Dependency array is empty, so the function is only created once
+    setExpense([...expense, exp]);
+  };  //Dependency array is empty, so the function is only created once
 
  // Memoize the expenses array
- const memoizedExpenses = useMemo(() => expense, [expense]);
+//  const memoizedExpenses = useMemo(() => expense, [expense]);
   
   return (
     <Container>
@@ -124,14 +128,15 @@ const Dashboard = React.memo(() => {
         <GraphDisplay>
           <AddExpense onAddExpense={handleAddExpense}/>
         </GraphDisplay>
+
       </ExpenseDisplayContainer>
 
-      <ExpenseHistory>
-        <ExpenseTable addedExpense={memoizedExpenses}/> 
-      </ExpenseHistory>
+        <NewExpenseContainer>
+            {expense.map((exp) =>(<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={exp.id} amount={exp.amount}/>))}
+        </NewExpenseContainer>
 
     </Container>
   )
-})
+}
 
 export default Dashboard

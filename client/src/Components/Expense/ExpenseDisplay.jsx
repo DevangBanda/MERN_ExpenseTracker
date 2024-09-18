@@ -42,12 +42,13 @@ justify-content: center;
 `;
 
 
-const ExpenseDisplay = ({}) => {
+const ExpenseDisplay = (props) => {
+  const {dt, description, amount, type} = props;
   return (
     <Container>
-        <Date>Date</Date>
-        <Desc>Description</Desc>
-        <Amount>Amount</Amount>
+        <Date>{dt}</Date>
+        <Desc>{description}</Desc>
+        <Amount>{amount}</Amount>
         <Type>Type</Type>
     </Container>
   )

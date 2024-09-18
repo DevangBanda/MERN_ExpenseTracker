@@ -34,7 +34,6 @@ const AddExpense = React.memo(({onAddExpense}) => {
 
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
-    const [expense, setExpense] = useState({date: '', description: '', amount: ''}); 
     const [date, setDate]= useState(dayjs(new Date()));
 
       // Function to handle description change
@@ -55,9 +54,9 @@ const AddExpense = React.memo(({onAddExpense}) => {
             let day = $D;
             
             const newDate = new Date(year, month, day);
-        
-            setExpense({newDate, description, amount });
-            onAddExpense({newDate, description, amount});
+            const dateStr = newDate.toLocaleDateString();
+            const id = Date.now();
+            onAddExpense({dateStr, description, amount, id});
         }
         else{
             window.alert("Amount and description cannot be empty");
