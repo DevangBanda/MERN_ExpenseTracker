@@ -13,3 +13,7 @@ export const addExpenseCSV = async(data) =>  await API.post(`/budget/addExpenseD
 
 export const userSignUp = async(data) => await API.post(data)(`/userSignUp`. data);
 export const userSignIn = async(data) => await API.post(data)(`/userSignIn`. data);
+
+export const addCategory = async(data) => {
+    API.post(`/budget/addCategory`, data);
+}

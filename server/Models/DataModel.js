@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const dataSchema = new mongoose.Schema({
     user:{
@@ -9,7 +9,7 @@ const dataSchema = new mongoose.Schema({
     description: {type: String, required: true,}, 
     amount: {type: Number, required: true,}, 
     date: {type: Date, default: Date.now, required: true}, 
-    category: {type: String, default: "Expense", required: true}, 
+    category: {type: mongoose.Schema.Types.ObjectId, ref:"Category", required: true}, 
 
 });
 

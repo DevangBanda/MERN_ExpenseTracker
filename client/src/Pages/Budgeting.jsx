@@ -10,6 +10,8 @@ import { CloudQueueSharp } from '@mui/icons-material';
 import Papa from "papaparse";
 import Categories from '../Components/DisplayComponents/Categories';
 
+import {addCategory} from '../api/index';
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -70,12 +72,9 @@ border-radius: 20px;
 
 
 const Budgeting = React.memo(() => {
-  console.log("hed");
-  const elementRef = useRef(null);
-  const [addCategory, setAddCategory] = useState(false);
-  const [categoryList, setCategoryList] = useState([]);
-  const [categoryInput, setCategoryInput] = useState("");
-  
+  console.log("asdsa");
+  //useState for the name of the category
+  const [userCategory, setUserCategory] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
 
   //Function to add expense into the list of expenses
@@ -106,20 +105,17 @@ const Budgeting = React.memo(() => {
   };
 
   //Function to handle add category button click
-  const handleCategoryAdd = () => {
-    setCategoryList([...categoryList, {id: Date.now(), name:elementRef.current.value}]);
-  }
+  const addNewCategory = async() => {
+   await addCategory({categoryName: userCategory})
+   .then((res) =>
+  {
 
-  //Function to handle category Input Change
-  const handleCategoryInputChange = (e) =>{
-      setCategoryInput(e.target.value);
-  }
-
-  //Function to handle delete category button click 
-  const handleCategoryDelete = (id) => {
-    console.log("Bird");
-    setCategoryList((categoryList) => categoryList.filter((categ) => categ.id !== id));
-  }
+  })
+  .catch((error) =>
+  {
+    console.log(error);
+  });
+  };
 
   return (
     <Container>
@@ -136,7 +132,7 @@ const Budgeting = React.memo(() => {
               </ExpensesContainer> 
 
               <ExpensesContainer>
-                <Categories/>
+                <Categories addNewCategory={addNewCategory} setUserCategory={setUserCategory}/>
               </ExpensesContainer>
 
             </ExpenseAndCategory>

@@ -26,23 +26,17 @@ justify-content: center;
 padding-left: 10px;
 `;
 
-const Categories = ({props}) => {
-  console.log("hed");
+const Categories = ({addNewCategory, setUserCategory}) => {
 
     const [categoryList, setCategoryList] = useState([]);
 
     const elementRef = useRef(null);
-    const [addCategory, setAddCategory] = useState(false);
-    const [categoryInput, setCategoryInput] = useState("");
 
       //Function to handle add category button click
   const handleCategoryAdd = () => {
     setCategoryList([...categoryList, {id: Date.now(), name:elementRef.current.value}]);
-  }
-
-  //Function to handle category Input Change
-  const handleCategoryInputChange = (e) =>{
-      setCategoryInput(e.target.value);
+    addNewCategory();
+    setUserCategory(elementRef.current.value);
   }
 
   //Function to handle delete category button click 
@@ -57,8 +51,8 @@ const Categories = ({props}) => {
             <Head>Categories</Head>
         </Top>
         <Top>
-            <input ref={elementRef} type="text" placeholder={"Add new Category"}/>
-            <button onClick={handleCategoryAdd} component={<AddIcon/>}></button>
+            <input ref={elementRef}  type="text" placeholder={"Add new Category"}/>
+            <button onClick={() => handleCategoryAdd()} component={<AddIcon/>}></button>
         </Top>
         <Bottom>
             {categoryList.map((category) => (<CategoriesDisplay onClick={handleCategoryDelete} id={category.id} key={category.id} name={category.name}/>))}

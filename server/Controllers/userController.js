@@ -81,6 +81,11 @@ export const userSignIn = async (req,res,next) => {
     }
 }
 
+
+export const addCategory = async(req, res, next) =>{
+    console.log("add category req received");
+}
+
 export const addExpense = async(req, res, next) => 
 {
     console.log(req)
