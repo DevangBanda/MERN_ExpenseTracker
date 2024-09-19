@@ -26,22 +26,25 @@ justify-content: center;
 padding-left: 10px;
 `;
 
-const Categories = ({addNewCategory, setUserCategory}) => {
+const Categories = ({addNewCategory, onInputChange, list, onDelete}) => {
 
     const [categoryList, setCategoryList] = useState([]);
-
     const elementRef = useRef(null);
 
-      //Function to handle add category button click
+  //Function to handle add category button click
   const handleCategoryAdd = () => {
     setCategoryList([...categoryList, {id: Date.now(), name:elementRef.current.value}]);
     addNewCategory();
-    setUserCategory(elementRef.current.value);
   }
+
+  const handleChange = (event) => {
+    onInputChange(event.target.value);
+  };
 
   //Function to handle delete category button click 
   const handleCategoryDelete = (id) => {
-    setCategoryList((categoryList) => categoryList.filter((categ) => categ.id !== id));
+    //setCategoryList((categoryList) => categoryList.filter((categ) => categ.id !== id));
+    onDelete(id);
   }
 
 
@@ -51,11 +54,12 @@ const Categories = ({addNewCategory, setUserCategory}) => {
             <Head>Categories</Head>
         </Top>
         <Top>
-            <input ref={elementRef}  type="text" placeholder={"Add new Category"}/>
+            <input ref={elementRef} onChange={handleChange} type="text" placeholder={"Add new Category"}/>
             <button onClick={() => handleCategoryAdd()} component={<AddIcon/>}></button>
         </Top>
         <Bottom>
-            {categoryList.map((category) => (<CategoriesDisplay onClick={handleCategoryDelete} id={category.id} key={category.id} name={category.name}/>))}
+            
+            {list.map((category) => (<CategoriesDisplay onClick={handleCategoryDelete} id={category._id} key={category._id} name={category.categoryName}/>))}
         </Bottom>
 
     </Container>

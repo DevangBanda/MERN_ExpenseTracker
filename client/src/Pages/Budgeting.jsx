@@ -10,7 +10,7 @@ import { CloudQueueSharp } from '@mui/icons-material';
 import Papa from "papaparse";
 import Categories from '../Components/DisplayComponents/Categories';
 
-import {addCategory} from '../api/index';
+import {addCategory, getCategoryList, deleteCategoryList} from '../api/index';
 
 const Container = styled.div`
 display: flex;
@@ -72,10 +72,18 @@ border-radius: 20px;
 
 
 const Budgeting = React.memo(() => {
-  console.log("asdsa");
-  //useState for the name of the category
-  const [userCategory, setUserCategory] = useState("");
+ 
+  //useRef for the name of the category
+  const inputValueRef = useRef('');
+  //useState for the the categories saved in MongoDB
+  const [categoryList, setCategoryList] = useState([]);
+
   const [uploadedFile, setUploadedFile] = useState(null);
+
+
+  const handleInputChange = (newValue) => {
+    inputValueRef.current = newValue; // Update the ref without re-rendering
+  }
 
   //Function to add expense into the list of expenses
   const handleUploadFile = async () => {
@@ -104,18 +112,39 @@ const Budgeting = React.memo(() => {
       }
   };
 
+  const getCategoryMongo = async() => {
+      await getCategoryList()
+        .then((res) =>{
+            const data = res.data; 
+            setCategoryList(data);
+            console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+  }
+
   //Function to handle add category button click
   const addNewCategory = async() => {
-   await addCategory({categoryName: userCategory})
+   await addCategory({categoryName: inputValueRef.current})
    .then((res) =>
   {
-
+    getCategoryMongo();
+    console.log(res);
   })
   .catch((error) =>
   {
     console.log(error);
   });
   };
+
+  const handleDeleteCategory = async(id) => {
+    await deleteCategoryList(`${id}`)
+    .then((res) => {console.log(res); 
+      getCategoryMongo();
+    })
+  }
 
   return (
     <Container>
@@ -132,7 +161,7 @@ const Budgeting = React.memo(() => {
               </ExpensesContainer> 
 
               <ExpensesContainer>
-                <Categories addNewCategory={addNewCategory} setUserCategory={setUserCategory}/>
+                <Categories addNewCategory={addNewCategory} onInputChange={handleInputChange} onDelete={handleDeleteCategory} list={categoryList}/>
               </ExpensesContainer>
 
             </ExpenseAndCategory>

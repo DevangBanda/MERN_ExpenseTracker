@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import User from "../Models/User.js";
 import DataModel from "../Models/DataModel.js";
+import Category from "../Models/Category.js";
+import mongoose from "mongoose";
 
 dotenv.configDotenv();
 
@@ -83,7 +85,17 @@ export const userSignIn = async (req,res,next) => {
 
 
 export const addCategory = async(req, res, next) =>{
-    console.log("add category req received");
+    const {categoryName} = req.body;
+    
+    console.log(req.body);
+
+    try {
+        const newCategory = new Category({categoryName});
+        await newCategory.save();
+        return res.status(200).json(newCategory);  
+    } catch (error) {
+        
+    }
 }
 
 export const addExpense = async(req, res, next) => 
@@ -91,4 +103,19 @@ export const addExpense = async(req, res, next) =>
     console.log(req)
     console.log("Add expense");
     return res.status(200);
+}
+
+export const categoryList = async(req,res,next) => 
+{
+    console.log("category req received");
+    
+    const categories = await Category.find(); 
+    return res.status(200).json(categories);
+}
+
+export const deleteCategory = async(req, res, next) => {
+    const {id} = req.params; 
+    const abc = await Category.deleteOne({_id: new mongoose.Types.ObjectId(id)});
+    console.log(abc);
+    return res.status(200).json("deleted");
 }
