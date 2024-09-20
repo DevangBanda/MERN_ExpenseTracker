@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useRef} from 'react'; 
+import React, {useState, useMemo} from 'react'; 
 import styled from 'styled-components';
 import TextInput from './TextInput';
 import Input_Dash from './Input_Dash';
@@ -36,16 +36,9 @@ const AddExpense = React.memo(({onAddExpense}) => {
     const [amount, setAmount] = useState('');
     const [date, setDate]= useState(dayjs(new Date()));
 
-    const descriptionRef = useRef();
-    const amountRef = useRef();
-    const dateRef = useRef();
-
-
-
-
       // Function to handle description change
   const handleDescriptionChange = (value) => {
-    descriptionRef.current = value;
+    setDescription(value);
   };
 
     // Function to handle amount change
@@ -62,27 +55,14 @@ const AddExpense = React.memo(({onAddExpense}) => {
             
             const newDate = new Date(year, month, day);
             const dateStr = newDate.toLocaleDateString();
-            const id = Date.now();
-            console.log(descriptionRef.current);
-           // onAddExpense({dateStr, description, amount, id});
+           // const id = Date.now();
+            onAddExpense({dateStr, description, amount});
         }
         else{
             window.alert("Amount and description cannot be empty");
         }
     }
 
-      //Input Validation for the amount
-      const handleChange = (e) => {
-        let {value} = e.target; 
-
-        if(validateFloat){
-            if(!isFinite(value) && !/^[+-]?\d+(\.\d+)?$/.test(value)){
-                return
-            }
-        }
-        onChange(value);
-      };
-  
 
   return (
     <Expense>
@@ -95,13 +75,6 @@ const AddExpense = React.memo(({onAddExpense}) => {
         placeholder="Enter description"
         label = "Details of Expense"
         />
-
-      {/* <input
-        onChange={(e) => {descriptionRef.current = e.target.value}}
-        type="text"
-        placeholder="Enter description"
-        label = "Details of Expense"
-        />   */}
     
       <Input_Dash 
         name = "amount"
@@ -120,7 +93,7 @@ const AddExpense = React.memo(({onAddExpense}) => {
             }}/>
         </LocalizationProvider>
 
-      <button type="submit" text="Add Expense" onClick={() => handleAddExpenseClick()}/>   
+      <button type="submit" text="Add Expense" onClick={handleAddExpenseClick}/>   
 
     </Expense>
   )

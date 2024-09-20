@@ -7,7 +7,7 @@ import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
 import AmountDisplay from '../Components/Expense/AmountDisplay';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
-import { addExpense } from '../api';
+import { addExpense, getExpense} from '../api';
 
 const Container = styled.div`
 flex: 1; 
@@ -94,10 +94,13 @@ const Dashboard = React.memo(() => {
 
 
   //Expenses Section
+
+  //Upload an expense
   const postExpensesMongo = async(data) =>{
     await addExpense(data)
     .then((res) => {
       console.log(res);
+      getExpenseMongo();
     })
     .catch((err) => 
     {
@@ -105,6 +108,16 @@ const Dashboard = React.memo(() => {
     });
   };
 
+  //Get expenses from the database
+  const getExpenseMongo = async() =>{
+    await getExpense()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   
   return (
     <Container>

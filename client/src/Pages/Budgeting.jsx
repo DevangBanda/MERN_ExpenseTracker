@@ -83,9 +83,6 @@ const Budgeting = React.memo(() => {
   //Expenses Section
   const [ExpensesList, setExpensesList] = useState([]);
 
-
-
-
   //Category Section
   //Update the value of the useRef as the input value is updated
   const handleInputChange = (newValue) => {

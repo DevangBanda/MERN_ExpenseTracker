@@ -29,3 +29,4 @@ export const deleteCategoryList = async(id) => API.delete(`/budget/deleteCategor
 
 //Expenses Section 
 export const addExpense = async(data) => API.post(`/dashboard/addExpense`, data);
+export const getExpense = async() => API.get(`/dashboard/getExpense`);

@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import User from "../Models/User.js";
-import DataModel from "../Models/DataModel.js";
+import Expense from "../Models/Expense.js";
 import Category from "../Models/Category.js";
 import mongoose from "mongoose";
 
@@ -111,13 +111,30 @@ export const deleteCategory = async(req, res, next) => {
     const abc = await Category.deleteOne({_id: new mongoose.Types.ObjectId(id)});
     console.log(abc);
     return res.status(200).json("deleted");
-}
+};
 
 export const addExpense = async(req, res, next) => {
     console.log("Add expense");
     const data = req.body;
-    console.log(data);
+    try {
+        const expense = new Expense(data);
+        console.log(data);
+        await expense.save()
+            .then((res) =>{console.log(res)})
+            .catch((error) => {console.log(error)});
+        return res.status(200).json(expense); 
+    } catch (error) {
+        
+    }
     return res.status(200).json("received");
-}
+};
+
+export const sendExpense = async(req,res,next) => {
+
+    console.log("get expenses request received");
+    const expenses = await Expense.find({});
+    console.log(expenses); 
+    return res.status(200).json(expenses);
+};
     
 

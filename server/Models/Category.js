@@ -1,6 +1,11 @@
 import mongoose, { mongo } from "mongoose";
 
 const categorySchema = mongoose.Schema({
+        // user:{
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref:"User", 
+    //     required: true
+    // },
     categoryName:{
         type: String, 
         default: "Expense",
