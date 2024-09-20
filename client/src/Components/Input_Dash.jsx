@@ -26,7 +26,7 @@ const Input = styled.input`
     border-color: ${({ theme }) => theme.border};
   }`;
 
-const Input_Dash = ({label, placeholder, type, onChange, value, validateFloat}) => {
+const Input_Dash = ({label, placeholder, type, value, validateFloat}) => {
 
 
     //Input Validation for the amount
@@ -50,7 +50,6 @@ const Input_Dash = ({label, placeholder, type, onChange, value, validateFloat}) 
             label = {label}
             type={type}
             value={value}
-            onChange={handleChange}
             placeholder={placeholder}/>
     </Container>
   );

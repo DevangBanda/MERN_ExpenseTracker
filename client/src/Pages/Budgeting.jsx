@@ -72,15 +72,22 @@ border-radius: 20px;
 
 
 const Budgeting = React.memo(() => {
- 
+  
+  //Category Section
   //useRef for the name of the category
   const inputValueRef = useRef('');
   //useState for the the categories saved in MongoDB
   const [categoryList, setCategoryList] = useState([]);
-
   const [uploadedFile, setUploadedFile] = useState(null);
 
+  //Expenses Section
+  const [ExpensesList, setExpensesList] = useState([]);
 
+
+
+
+  //Category Section
+  //Update the value of the useRef as the input value is updated
   const handleInputChange = (newValue) => {
     inputValueRef.current = newValue; // Update the ref without re-rendering
   }
@@ -112,6 +119,7 @@ const Budgeting = React.memo(() => {
       }
   };
 
+  //Display categories from Database
   const getCategoryMongo = async() => {
       await getCategoryList()
         .then((res) =>{
@@ -139,12 +147,26 @@ const Budgeting = React.memo(() => {
   });
   };
 
+  //Function to handle delete category button click
   const handleDeleteCategory = async(id) => {
     await deleteCategoryList(`${id}`)
     .then((res) => {console.log(res); 
       getCategoryMongo();
     })
-  }
+  }; 
+
+  
+
+  //Expenses Section
+const getRecentExpensesMongo = () => {
+  
+};
+
+
+  //Run the functions on mount
+  useEffect(() =>{
+    getCategoryMongo();
+  }, []);
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo, useEffect} from 'react'; 
+import React, {useCallback, useState, useMemo, useEffect, memo} from 'react'; 
 import styled, { ThemeProvider } from 'styled-components'
 import BarGraphData from '../Components/Graphs/BarGraphData';
 import PieChartData from '../Components/Graphs/PieChartData';
@@ -7,6 +7,7 @@ import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
 import AmountDisplay from '../Components/Expense/AmountDisplay';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
+import { addExpense } from '../api';
 
 const Container = styled.div`
 flex: 1; 
@@ -81,22 +82,29 @@ border-radius: 20px;
 }`;
 
 
-const Dashboard = () => {
-  const [expense, setExpense] = useState([]);
-  const [chartType, setChartType] = useState();
+const Dashboard = React.memo(() => {
 
+  console.log("pagee");
+
+  const [chartType, setChartType] = useState();
   const handleSetChartType = (chart) => 
   {
     setChartType(chart);
   }
 
-  const handleAddExpense = (exp) =>
-  {
-    setExpense([...expense, exp]);
-  };  //Dependency array is empty, so the function is only created once
 
- // Memoize the expenses array
-//  const memoizedExpenses = useMemo(() => expense, [expense]);
+  //Expenses Section
+  const postExpensesMongo = async(data) =>{
+    await addExpense(data)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => 
+    {
+      console.log(err);
+    });
+  };
+
   
   return (
     <Container>
@@ -126,17 +134,17 @@ const Dashboard = () => {
         </GraphDisplay>
         
         <GraphDisplay>
-          <AddExpense onAddExpense={handleAddExpense}/>
+          <AddExpense onAddExpense={postExpensesMongo}/>
         </GraphDisplay>
 
       </ExpenseDisplayContainer>
 
         <NewExpenseContainer>
-            {expense.map((exp) =>(<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={exp.id} amount={exp.amount}/>))}
+          {/* {expense.map((exp) =>(<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={exp.id} amount={exp.amount}/>))} */}
         </NewExpenseContainer>
 
     </Container>
   )
-}
+});
 
 export default Dashboard

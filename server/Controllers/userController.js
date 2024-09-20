@@ -98,13 +98,6 @@ export const addCategory = async(req, res, next) =>{
     }
 }
 
-export const addExpense = async(req, res, next) => 
-{
-    console.log(req)
-    console.log("Add expense");
-    return res.status(200);
-}
-
 export const categoryList = async(req,res,next) => 
 {
     console.log("category req received");
@@ -119,3 +112,12 @@ export const deleteCategory = async(req, res, next) => {
     console.log(abc);
     return res.status(200).json("deleted");
 }
+
+export const addExpense = async(req, res, next) => {
+    console.log("Add expense");
+    const data = req.body;
+    console.log(data);
+    return res.status(200).json("received");
+}
+    
+

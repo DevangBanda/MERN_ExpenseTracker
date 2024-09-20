@@ -6,9 +6,15 @@ const router = express.Router();
 router.post('/signUp', userSignUp);
 router.get('/signIn', userSignIn);
 
-router.post('/budget/addExpenseData', addExpense);
+//Category Section
 router.post('/budget/addCategory', addCategory);
 router.get('/budget/getCategoryList', categoryList);
 router.delete(`/budget/deleteCategoryList/:id`, deleteCategory);
+
+//Expenses Section
+router.post('/dashboard/addExpense', addExpense);
+
+
+
 
 export default router;
