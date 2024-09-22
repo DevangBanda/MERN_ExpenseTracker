@@ -99,7 +99,6 @@ const Dashboard = React.memo(() => {
   const postExpensesMongo = async(data) =>{
     await addExpense(data)
     .then((res) => {
-      console.log(res);
       getExpenseMongo();
     })
     .catch((err) => 
@@ -112,7 +111,12 @@ const Dashboard = React.memo(() => {
   const getExpenseMongo = async() =>{
     await getExpense()
     .then((res) => {
-      console.log(res);
+      const expenseData = res.data;
+      expenseData.map((expense) =>{
+        console.log(expense.dateStr);
+        const date = new Date(Date.parse(expense.dateStr));
+        console.log(date);
+      })
     })
     .catch((err) => {
       console.log(err);
