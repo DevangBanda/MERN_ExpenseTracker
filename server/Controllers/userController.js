@@ -118,7 +118,6 @@ export const addExpense = async(req, res, next) => {
     const data = req.body;
     try {
         const expense = new Expense(data);
-        console.log(data);
         await expense.save()
             .then((res) =>{console.log(res)})
             .catch((error) => {console.log(error)});
@@ -137,4 +136,12 @@ export const sendExpense = async(req,res,next) => {
     return res.status(200).json(expenses);
 };
     
+
+export const deleteExpense = async(req, res, next) => {
+    console.log("delete req received");
+    const id = req.params;
+    const abc = await Expense.deleteOne({_id: new mongoose.Types.ObjectId(id)});
+    console.log(abc);
+    return res.status(200).json("deleted");
+}
 

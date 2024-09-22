@@ -7,7 +7,8 @@ import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
 import AmountDisplay from '../Components/Expense/AmountDisplay';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
-import { addExpense, getExpense} from '../api';
+import { addExpense, getExpense, deleteExpense} from '../api';
+import TryExpense from '../Components/Expense/TryExpense';
 
 const Container = styled.div`
 flex: 1; 
@@ -85,6 +86,7 @@ border-radius: 20px;
 const Dashboard = React.memo(() => {
 
   console.log("pagee");
+  const [expenseData, setExpenseData] = useState([{}]);
 
   const [chartType, setChartType] = useState();
   const handleSetChartType = (chart) => 
@@ -111,15 +113,20 @@ const Dashboard = React.memo(() => {
   const getExpenseMongo = async() =>{
     await getExpense()
     .then((res) => {
-      const expenseData = res.data;
+      setExpenseData(res.data);
       expenseData.map((expense) =>{
-        console.log(expense.dateStr);
         const date = new Date(Date.parse(expense.dateStr));
-        console.log(date);
       })
     })
     .catch((err) => {
       console.log(err);
+    })
+  };
+
+  const deleteExpenseMongo = async(id) =>{
+    await deleteExpense(`${id}`)
+    .then((res) => {
+      console.log(res);
     })
   }
   
@@ -155,11 +162,12 @@ const Dashboard = React.memo(() => {
         </GraphDisplay>
 
       </ExpenseDisplayContainer>
-
+{/* 
         <NewExpenseContainer>
-          {/* {expense.map((exp) =>(<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={exp.id} amount={exp.amount}/>))} */}
-        </NewExpenseContainer>
-
+         {expenseData.map((exp, _id) => {return (<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={_id} amount={exp.amount}/>)})}
+       
+        </NewExpenseContainer> */}
+        <TryExpense list={expenseData}/>
     </Container>
   )
 });
