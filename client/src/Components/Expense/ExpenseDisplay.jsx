@@ -50,6 +50,7 @@ const ExpenseDisplay = (props) => {
         <Desc>{description}</Desc>
         <Amount>{amount}</Amount>
         <Type>Type</Type>
+        <Desc>New Desc</Desc>
     </Container>
   )
 }
