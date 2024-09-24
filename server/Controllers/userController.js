@@ -114,12 +114,13 @@ export const deleteCategory = async(req, res, next) => {
 };
 
 export const addExpense = async(req, res, next) => {
-    console.log("Add expense");
+ 
     const data = req.body;
+    console.log(data);
     try {
         const expense = new Expense(data);
         await expense.save()
-            .then((res) =>{console.log(res)})
+            .then((res) =>{})
             .catch((error) => {console.log(error)});
         return res.status(200).json(expense); 
     } catch (error) {
@@ -129,10 +130,7 @@ export const addExpense = async(req, res, next) => {
 };
 
 export const sendExpense = async(req,res,next) => {
-
-    console.log("get expenses request received");
     const expenses = await Expense.find({});
-    console.log(expenses); 
     return res.status(200).json(expenses);
 };
     

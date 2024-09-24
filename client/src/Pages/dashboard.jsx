@@ -128,7 +128,11 @@ const Dashboard = React.memo(() => {
     .then((res) => {
       console.log(res);
     })
-  }
+  }; 
+
+  useEffect(() => {
+    getExpenseMongo();
+  },[]);
   
   return (
     <Container>
