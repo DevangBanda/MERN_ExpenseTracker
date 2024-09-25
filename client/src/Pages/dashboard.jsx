@@ -7,7 +7,7 @@ import AddExpense from '../Components/AddExpense';
 import Button_Dash from '../Components/Button_Dash';
 import AmountDisplay from '../Components/Expense/AmountDisplay';
 import ExpenseDisplay from '../Components/Expense/ExpenseDisplay';
-import { addExpense, getExpense, deleteExpense} from '../api';
+import { addExpense, getExpense, deleteExpense, getCategoryList} from '../api';
 import TryExpense from '../Components/Expense/TryExpense';
 
 const Container = styled.div`
@@ -87,7 +87,8 @@ const Dashboard = React.memo(() => {
 
   console.log("pagee");
   const [expenseData, setExpenseData] = useState([{}]);
-
+  const [categoryData, setCategoryData] = useState([]);
+  
   const [chartType, setChartType] = useState();
   const handleSetChartType = (chart) => 
   {
@@ -110,29 +111,47 @@ const Dashboard = React.memo(() => {
   };
 
   //Get expenses from the database
-  const getExpenseMongo = async() =>{
+  const getExpenseMongo = useCallback(async() =>{
     await getExpense()
     .then((res) => {
       setExpenseData(res.data);
-      expenseData.map((expense) =>{
-        const date = new Date(Date.parse(expense.dateStr));
-      })
     })
     .catch((err) => {
       console.log(err);
     })
-  };
+  });
 
   const deleteExpenseMongo = async(id) =>{
     await deleteExpense(`${id}`)
-    .then((res) => {
+    .then(async(res) => {
       console.log(res);
+      await getExpenseMongo();
     })
+
   }; 
 
+  //Category Section
+  const getCategoryMongo = useCallback(async() => {
+    await getCategoryList()
+      .then((res) =>{
+          const data = res.data; 
+          setCategoryData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+});
+
+  //Graphics Section
+
+
+  //All
   useEffect(() => {
     getExpenseMongo();
+    getCategoryMongo();
   },[]);
+
+
   
   return (
     <Container>
@@ -146,7 +165,7 @@ const Dashboard = React.memo(() => {
               <Button_Dash onClick={() => handleSetChartType('bar')} text="Bar"/>
               <Button_Dash onClick={() => handleSetChartType('line')} text="Line"/>
             </ButtonDiv>
-              {chartType == 'bar' ? (<BarGraphData/>) : chartType == 'line' ? (<LineChartData/>) : (<PieChartData/>)}
+              {chartType == 'bar' ? (<BarGraphData data={categoryData}/>) : chartType == 'line' ? (<LineChartData data={categoryData}/>) : (<PieChartData data={categoryData}/>)}
           </ChartSelector>
 
           <AccountDisplayContainer>
@@ -171,7 +190,7 @@ const Dashboard = React.memo(() => {
          {expenseData.map((exp, _id) => {return (<ExpenseDisplay dt={exp.dateStr} description={exp.description} key={_id} amount={exp.amount}/>)})}
        
         </NewExpenseContainer> */}
-        <TryExpense list={expenseData}/>
+        <TryExpense list={expenseData} handleDeleteClick={deleteExpenseMongo}/>
     </Container>
   )
 });

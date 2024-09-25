@@ -16,7 +16,9 @@ box-shadow: 1px 6px 10px 1px black;
 padding: 5px;}
 `;
 
-const PieChartData = React.memo(() => {
+const PieChartData = React.memo((props) => {
+
+    const {data} = props; 
     const chartData = [
         { id: 0, value: 30, label: 'Income' },
         { id: 1, value: 20, label: 'Expense' },

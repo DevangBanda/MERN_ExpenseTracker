@@ -53,21 +53,26 @@ justify-content: center;
 `;
 
 
-const TryExpense = ({list}) => {
+const TryExpense =React.memo(({list, handleDeleteClick}) => {
 
   const [expenseList, setExpenseList] = useState([null]);
 
     useEffect(() => {
         setExpenseList(list);    
-    }, [list]);
+    }, []);
+
+  const handleDelete = (id) => {
+    handleDeleteClick(id);
+  }
 
   return (
     <NewContainer>
-        {list.map((exp) => (
-            <Container key={exp._id}>
+        {list.map((exp, index) => (
+            <Container id={exp._id} key={index}>
                 <Date>{exp.dateStr}</Date>
                 <Desc>{exp.description}</Desc>
                 <Amount>{exp.amount}</Amount>
+                <button key={exp._id} onClick = {() => handleDelete(exp._id)}>Delete</button>
             </Container>))}
         
      {/* <Date>{dt}</Date>
@@ -76,6 +81,6 @@ const TryExpense = ({list}) => {
             <Type>Type</Type> */}
     </NewContainer>
   )
-}
+})
 
 export default TryExpense

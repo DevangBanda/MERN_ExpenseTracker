@@ -77,8 +77,7 @@ const AddExpense = React.memo(({onAddExpense}) => {
         .catch((error) => {
           console.log(error);
         })
-
-  }
+  };
 
   useEffect(() => {
     getCategoryMongo();

@@ -16,8 +16,6 @@ padding: 5px;}`;
 
 const BarGraphData = React.memo(({}) => {
 
-
-
     //Using dataset in Bargraph, therefore, data needs to be an array of objects
     //Might need to define and use a valueFormatter with the real data
     const chartData = [{"Income": 10, "Expense": 8, 'month': 'Jan'},
