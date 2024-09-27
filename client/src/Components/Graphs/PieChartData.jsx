@@ -19,21 +19,30 @@ padding: 5px;}
 const PieChartData = React.memo((props) => {
 
     const {data} = props; 
-    const chartData = [
-        { id: 0, value: 30, label: 'Income' },
-        { id: 1, value: 20, label: 'Expense' },
-        { id: 2, value: 10, label: 'Saving' },
-    ]
+    console.log(data);
+
+    const expenseData = data.map((exp) => {return{id:exp._id, value:10, label:exp.categoryName}});
 
   return (
     <PieChart
         series={[
             {
-                data:[...chartData], 
+                data:[...expenseData], 
+                innerRadius: 10,
+                outerRadius: 100,
+                paddingAngle: 3,
+                padding: 30,
+                cornerRadius: 6,
                 highlightScope: {fade: 'global', highlight: 'item'}, 
-                faded: {innerRadius: 30, additionalRadius: -15, color: 'grey'},        
+                faded: {innerRadius: 30, additionalRadius: -30, color: 'gray'}, 
             },
         ]}
+        slotProps={{
+            legend:{
+                // hidden:true,
+                padding: 10,
+            }
+        }}
         height={300} 
     />
   )
