@@ -126,7 +126,7 @@ export const addExpense = async(req, res, next) => {
     } catch (error) {
         
     }
-    return res.status(200).json("received");
+    return res.status(200).json("receiv");
 };
 
 export const sendExpense = async(req,res,next) => {
