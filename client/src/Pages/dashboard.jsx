@@ -165,7 +165,7 @@ const Dashboard = React.memo(() => {
               <Button_Dash onClick={() => handleSetChartType('bar')} text="Bar"/>
               <Button_Dash onClick={() => handleSetChartType('line')} text="Line"/>
             </ButtonDiv>
-              {chartType == 'bar' ? (<BarGraphData data={categoryData}/>) : chartType == 'line' ? (<LineChartData data={categoryData}/>) : (<PieChartData data={categoryData}/>)}
+              {chartType == 'bar' ? (<BarGraphData data={expenseData}/>) : chartType == 'line' ? (<LineChartData data={expenseData}/>) : (<PieChartData data={expenseData}/>)}
           </ChartSelector>
 
           <AccountDisplayContainer>
