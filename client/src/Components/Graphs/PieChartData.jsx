@@ -19,7 +19,6 @@ padding: 5px;}
 const PieChartData = React.memo((props) => {
 
     const {data} = props; 
-    console.log(data);
 
     const expenseData = data.map((exp) => {return{id:exp._id, value:10, label:exp.categoryName}});
 

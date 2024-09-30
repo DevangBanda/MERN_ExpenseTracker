@@ -39,7 +39,8 @@ const AddExpense = React.memo(({onAddExpense}) => {
     const [date, setDate]= useState(dayjs(new Date()));
     const [categoryList, setCategoryList] = useState([]);
     
-    const categoryRef = useRef(null);
+    const categoryIdRef = useRef(null);
+    const categoryNameRef = useRef(null);
 
       // Function to handle description change
   const handleDescriptionChange = (value) => {
@@ -60,8 +61,9 @@ const AddExpense = React.memo(({onAddExpense}) => {
             
             const newDate = new Date(year, month, day);
             const dateStr = newDate.toLocaleDateString();
-            const category = categoryRef.current;
-            onAddExpense({dateStr, description, amount, category});
+            const categoryId = categoryIdRef.current;
+            const categoryName = categoryNameRef.current
+            onAddExpense({dateStr, description, amount, categoryId, categoryName});
         }
         else{
             window.alert("Amount and description cannot be empty");
@@ -73,6 +75,8 @@ const AddExpense = React.memo(({onAddExpense}) => {
         .then((res) =>{
             const data = res.data; 
             setCategoryList(data);
+            categoryIdRef.current = data[0]._id;
+            categoryNameRef.current = data[0].categoryName;
         })
         .catch((error) => {
           console.log(error);
@@ -105,7 +109,9 @@ const AddExpense = React.memo(({onAddExpense}) => {
         label = "Enter Amount"
         />  
       
-      <select name="categories" onChange={(e) => {categoryRef.current = e.target.options[e.target.selectedIndex].getAttribute('data');}}>
+      <select name="categories" onChange={(e) => {categoryIdRef.current = e.target.options[e.target.selectedIndex].getAttribute('data');
+                                                  categoryNameRef.current = e.target.value;                  
+      }}>
         {categoryList.map((cat) => (<option data={cat._id} key={cat._id}>{cat.categoryName}</option>))}
       </select>
 

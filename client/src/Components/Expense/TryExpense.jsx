@@ -58,7 +58,8 @@ const TryExpense =React.memo(({list, handleDeleteClick}) => {
   const [expenseList, setExpenseList] = useState([null]);
 
     useEffect(() => {
-        setExpenseList(list);    
+        setExpenseList(list);
+        console.log(list);
     }, []);
 
   const handleDelete = (id) => {
@@ -72,13 +73,10 @@ const TryExpense =React.memo(({list, handleDeleteClick}) => {
                 <Date>{exp.dateStr}</Date>
                 <Desc>{exp.description}</Desc>
                 <Amount>{exp.amount}</Amount>
+                <Amount>{exp.categoryName}</Amount>
                 <button key={exp._id} onClick = {() => handleDelete(exp._id)}>Delete</button>
             </Container>))}
         
-     {/* <Date>{dt}</Date>
-            <Desc>{description}</Desc>
-            <Amount>{amount}</Amount>
-            <Type>Type</Type> */}
     </NewContainer>
   )
 })

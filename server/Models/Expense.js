@@ -1,4 +1,5 @@
 import mongoose, { mongo } from "mongoose";
+import { getDefaultHighWaterMark } from "stream";
 
 const dataSchema = new mongoose.Schema({
     // user:{
@@ -9,6 +10,8 @@ const dataSchema = new mongoose.Schema({
     dateStr: {type: String, default: Date.now, required: true}, 
     description: {type: String, required: true}, 
     amount: {type: String, required: true}, 
+    categoryId:{type: String, required: true},
+    categoryName: {type: String, default:"Expense"},
   //  category: {type: mongoose.Schema.Types.ObjectId, ref:"Category", default: "Expenses", required: true}, 
 
 });

@@ -144,7 +144,7 @@ const Dashboard = React.memo(() => {
 
   //Graphics Section
 
-
+  console.log(expenseData);
   //All
   useEffect(() => {
     getExpenseMongo();
