@@ -107,15 +107,6 @@ const LineChartData = React.memo((props) => {
         };
     });
         
-            
-        //Using dataset in Bargraph, therefore, data needs to be an array of objects
-        //Might need to define and use a valueFormatter with the real data
-        const chartData1 = [{"Income": 10, "Expense": 8, 'month': 'Jan'},
-                            {"Income": 10, "Expense": 8, 'month': 'Feb'}, 
-                            {"Income": 10, "Expense": 8, 'month': 'Mar'},
-                            {"Income": 10, "Expense": 8, 'month': 'Apr'},
-        ]
-
   return (
         <LineChart
             dataset={result}

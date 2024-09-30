@@ -90,6 +90,12 @@ const Dashboard = React.memo(() => {
   const [categoryData, setCategoryData] = useState([]);
   
   const [chartType, setChartType] = useState();
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
   const handleSetChartType = (chart) => 
   {
     setChartType(chart);
@@ -160,13 +166,24 @@ const Dashboard = React.memo(() => {
         </SelectTimeline>
         <GraphDisplay>
           <ChartSelector>
+          
             <ButtonDiv>
               <Button_Dash onClick={() => handleSetChartType('pie')} text="Pie"/>
               <Button_Dash onClick={() => handleSetChartType('bar')} text="Bar"/>
               <Button_Dash onClick={() => handleSetChartType('line')} text="Line"/>
+
+              <select>
+              {monthNames.map((month) => (<option>{month}</option>))}
+              </select>
+
+              <select>
+              {monthNames.map((month) => (<option>{month}</option>))}
+              </select>
+
             </ButtonDiv>
               {chartType == 'bar' ? (<BarGraphData data={expenseData}/>) : chartType == 'line' ? (<LineChartData data={expenseData}/>) : (<PieChartData data={expenseData}/>)}
           </ChartSelector>
+          
 
           <AccountDisplayContainer>
             <AccountsDisplay>
