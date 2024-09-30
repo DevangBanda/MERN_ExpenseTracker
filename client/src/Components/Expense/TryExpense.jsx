@@ -18,7 +18,7 @@ const NewContainer = styled.div`
 flex: 1; 
 display: flex;
 flex-direction: column;
-min-height: 200px;
+min-height: 500px;
 gap:10px;
 overflow-y: auto;
 background: ${({ theme }) => theme.bgLight};

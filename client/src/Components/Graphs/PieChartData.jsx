@@ -41,7 +41,6 @@ const PieChartData = React.memo((props) => {
     const expenseData = sumByCategory(data);
     
     const res = Object.entries(expenseData).map(([key, value]) => ({key, value, label:key}));
-    console.log(res);
 
   return (
     <PieChart
