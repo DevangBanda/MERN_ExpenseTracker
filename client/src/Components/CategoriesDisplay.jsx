@@ -18,8 +18,6 @@ const Container = styled.div`
   border: 5px solid black;
 `;
 
-
-
 const CategoriesDisplay = (props) => {
     const {name, onClick, id} = props
   return (

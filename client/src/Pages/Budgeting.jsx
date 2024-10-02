@@ -100,20 +100,21 @@ const Budgeting = React.memo(() => {
     Papa.parse(uploadedFile ,{
         header: true,
         skipEmptyLines: true,
-        complete: function (results) {
-          console.log(results.data)
+        complete: async function (results) {
+          console.log(results.data);
+          await addExpenseCSV(results.data)
+          .then((res) => {
+              console.log(res)
+          })
+          .then(data => console.log(data))
+          .catch()
+          {
+           
+          }
         },
     });
     
-    await addExpenseCSV()
-      .then((res) => {
-          console.log(res)
-      })
-      .then(data => console.log(data))
-      .catch()
-      {
-       
-      }
+
   };
 
   //Display categories from Database

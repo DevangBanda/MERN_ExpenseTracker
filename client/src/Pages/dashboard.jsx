@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo, useEffect, memo} from 'react'; 
+import React, {useCallback, useState, useMemo, useEffect, useRef, memo} from 'react'; 
 import styled, { ThemeProvider } from 'styled-components'
 import BarGraphData from '../Components/Graphs/BarGraphData';
 import PieChartData from '../Components/Graphs/PieChartData';
@@ -88,8 +88,10 @@ const Dashboard = React.memo(() => {
   console.log("pagee");
   const [expenseData, setExpenseData] = useState([{}]);
   const [categoryData, setCategoryData] = useState([]);
-  
   const [chartType, setChartType] = useState();
+
+  const startMonthRef = useRef("January");
+  const endMonthRef = useRef("January");
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -130,7 +132,6 @@ const Dashboard = React.memo(() => {
   const deleteExpenseMongo = async(id) =>{
     await deleteExpense(`${id}`)
     .then(async(res) => {
-      console.log(res);
       await getExpenseMongo();
     })
 
@@ -148,9 +149,6 @@ const Dashboard = React.memo(() => {
       })
 });
 
-  //Graphics Section
-
-  console.log(expenseData);
   //All
   useEffect(() => {
     getExpenseMongo();
@@ -172,12 +170,12 @@ const Dashboard = React.memo(() => {
               <Button_Dash onClick={() => handleSetChartType('bar')} text="Bar"/>
               <Button_Dash onClick={() => handleSetChartType('line')} text="Line"/>
 
-              <select>
-              {monthNames.map((month) => (<option>{month}</option>))}
+              <select onChange={(e) => startMonthRef.current = e.target.value}>
+                {monthNames.map((month, index) => (<option key={index}>{month}</option>))}
               </select>
 
-              <select>
-              {monthNames.map((month) => (<option>{month}</option>))}
+              <select onChange={(e) => endMonthRef.current = e.target.value}>
+                {monthNames.map((month, index) => (<option key={index}>{month}</option>))}
               </select>
 
             </ButtonDiv>

@@ -1,5 +1,5 @@
 import express from "express";
-import { userSignUp, userSignIn, addCategory, categoryList, deleteCategory, addExpense, sendExpense, deleteExpense} from "../Controllers/userController.js";
+import { userSignUp, userSignIn, addCategory, categoryList, deleteCategory, addExpense, sendExpense, deleteExpense, addExpenseCSV} from "../Controllers/userController.js";
 
 const router = express.Router();
 
@@ -10,6 +10,8 @@ router.get('/signIn', userSignIn);
 router.post('/budget/addCategory', addCategory);
 router.get('/budget/getCategoryList', categoryList);
 router.delete(`/budget/deleteCategoryList/:id`, deleteCategory);
+router.post('/budget/addExpenseCSV', addExpenseCSV);
+
 
 //Expenses Section
 router.post('/dashboard/addExpense', addExpense);

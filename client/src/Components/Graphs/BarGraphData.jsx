@@ -77,9 +77,8 @@ const BarGraphData = React.memo((props) => {
         month: monthData.month, // Add month as a separate property
       }));
 
-    console.log(result);
 
-      const sortedRes = result.sort((a,b) => monthOrder[a.month] -  monthOrder[b.month]);
+    const sortedRes = result.sort((a,b) => monthOrder[a.month] -  monthOrder[b.month]);
 
 
         // Extract unique categories
@@ -95,8 +94,6 @@ const BarGraphData = React.memo((props) => {
     // Convert Set to Array
     const categoriesArray = Array.from(uniqueCategories);
 
-    console.log(categoriesArray);
-
     // Create an array of objects with label and dataKey
     const categoryObjects = categoriesArray.map(category => {
         // Get the total value for the category across all months
@@ -108,7 +105,6 @@ const BarGraphData = React.memo((props) => {
       
 
   return (
-
       <BarChart
       dataset={result}
       xAxis = {[{scaleType: 'band', dataKey:'month'}]}
@@ -116,7 +112,6 @@ const BarGraphData = React.memo((props) => {
       height={300}
       borderRadius={5}
       />
-
   )
 });
 

@@ -126,8 +126,33 @@ export const addExpense = async(req, res, next) => {
     } catch (error) {
         
     }
-    return res.status(200).json("receiv");
+    return res.status(200).json("received");
 };
+
+export const addExpenseCSV = async(req,res,next) => {
+    const data = req.body;
+    console.log("csv req received");
+    // console.log(data);
+    data.forEach(async(element) => {
+        try{
+        const {dateStr, description, amount, categoryName} = element;
+        const category = await Category.findOne({categoryName:categoryName});
+        const categoryId = category._id;
+        const expData = {dateStr, description, amount,categoryId,categoryName}
+        console.log(expData)
+        
+        const expense = new Expense(expData);
+        await expense.save()
+            .then((res) =>{})
+            .catch((error) => {console.log(error)});
+        
+        return res.status(200).json(expense); 
+        }
+        catch(error){
+
+        }
+    });
+}
 
 export const sendExpense = async(req,res,next) => {
     const expenses = await Expense.find({});

@@ -59,7 +59,6 @@ const TryExpense =React.memo(({list, handleDeleteClick}) => {
 
     useEffect(() => {
         setExpenseList(list);
-        console.log(list);
     }, []);
 
   const handleDelete = (id) => {

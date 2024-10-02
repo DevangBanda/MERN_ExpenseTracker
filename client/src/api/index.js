@@ -4,7 +4,7 @@ const API = axios.create({
     baseURL : "http://localhost:5100/",
 });
 
-export const addExpenseCSV = async(data) =>  await API.post(`/budget/addExpenseData`, data, {
+export const addExpenseCSV = async(data) =>  await API.post(`/budget/addExpenseCSV`, data, {
     onUploadProgress: (ProgressEvent) => {console.log(ProgressEvent.progress * 100)},
     headers: {
         "Custom-Header":"value",
