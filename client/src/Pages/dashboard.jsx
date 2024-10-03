@@ -189,7 +189,7 @@ const Dashboard = React.memo(() => {
             </AccountsDisplay>
 
             <AccountsDisplay>
-              <AmountDisplay type="Income" amount="$20000"/>
+              <AmountDisplay type="Income" amount="$2000"/>
               <AmountDisplay type="Income" amount="$20000"/>
             </AccountsDisplay>
           </AccountDisplayContainer>
