@@ -12,7 +12,6 @@ router.get('/budget/getCategoryList', categoryList);
 router.delete(`/budget/deleteCategoryList/:id`, deleteCategory);
 router.post('/budget/addExpenseCSV', addExpenseCSV);
 
-
 //Expenses Section
 router.post('/dashboard/addExpense', addExpense);
 router.get(`/dashboard/getExpense`, sendExpense);

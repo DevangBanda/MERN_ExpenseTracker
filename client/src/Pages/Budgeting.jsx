@@ -93,7 +93,7 @@ const Budgeting = React.memo(() => {
   const handleUploadFile = async () => {
 
     if(!uploadedFile){
-      alert("no file selected"); 
+      alert("no file selected."); 
       return
     }
 
