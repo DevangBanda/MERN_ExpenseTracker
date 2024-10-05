@@ -50,7 +50,7 @@ const PieChartData = React.memo((props) => {
                 innerRadius: 10,
                 outerRadius: 100,
                 paddingAngle: 3,
-                padding: 30,
+                padding: 33,
                 cornerRadius: 6,
                 highlightScope: {fade: 'global', highlight: 'item'}, 
                 faded: {innerRadius: 30, additionalRadius: -30, color: 'gray'}, 
